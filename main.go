@@ -20,10 +20,14 @@ func main() {
 		os.Exit(0)
 	}()
 
+	utils.AddFlag("m", "To set value xyz")
+	utils.AddBoolFlag("ml", "To add math library")
 	utils.FlagParser()
 
 	if utils.FilePath == "" {
 		utils.TerminalReader()
+	} else {
+		_, _ = utils.FileReader(utils.FilePath)
 	}
 
 }
