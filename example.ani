@@ -1,8 +1,5 @@
 // we need to think about imports
 
-for (int i=0 ; i<10 ; i++) {
-    if (i == 5) {
-        dattebayo;
-    }
-    misete(i);
+for (int i=0; i<=10; i++) {
+    printf("%d\n", i);
 }
