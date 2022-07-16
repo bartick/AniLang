@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	// "github.com/bartick/AniLang/token"
 )
 
 func FileReader(filename string) ([]string, error) {
@@ -14,6 +15,15 @@ func FileReader(filename string) ([]string, error) {
 	}
 	defer f.Close()
 
+	// lexedToken := token.NewLexer(f)
+	// for {
+	// 	pos, tok, lit := lexedToken.Lex()
+	// 	if tok == token.EOF {
+	// 		break
+	// 	}
+
+	// 	fmt.Printf("%d:%d\t%s\t%s\n", pos.line, pos.column, tok, lit)
+	// }
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())

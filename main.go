@@ -28,6 +28,7 @@ func main() {
 		utils.TerminalReader()
 	} else {
 		_, _ = utils.FileReader(utils.FilePath)
+		// fmt.Println(lines[0])
 	}
 
 }
