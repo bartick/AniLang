@@ -16,7 +16,10 @@ type FlagStruct struct {
 }
 
 var Flags = make(map[string]FlagStruct)
-var FilePath string = ""
+var (
+	FilePath   string = ""
+	flagPassed bool   = false
+)
 
 func AddFlag(flagName string, flagHelp string) {
 	Flags[flagName] = FlagStruct{
@@ -48,9 +51,13 @@ func validateFlags(flagToCheck string) (int, bool) {
 
 func FlagParser() {
 
-	AddFlag("help", "Width of the animation")
+	AddBoolFlag("help", "Width of the animation")
 
 	for i := 1; i < len(os.Args); i++ {
+
+		if !flagPassed {
+			flagPassed = true
+		}
 
 		if delemeter, flagValid := validateFlags(os.Args[i]); flagValid {
 			if entry, isPresent := Flags[os.Args[i][delemeter:]]; isPresent {
@@ -76,11 +83,18 @@ func FlagParser() {
 			FilePath = os.Args[i]
 		} else {
 
-			fmt.Println(errors.NVF)
+			fmt.Println(errors.Errors[errors.NVF])
 
 			os.Exit(1)
 		}
 
+	}
+
+	if flagPassed && FilePath == "" {
+
+		fmt.Println(errors.Errors[errors.NAF])
+
+		os.Exit(1)
 	}
 
 }
